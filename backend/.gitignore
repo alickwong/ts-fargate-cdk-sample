@@ -1,0 +1,7 @@
+build
+!jest.config.js
+*.d.ts
+node_modules
+coverage
+.nyc_output
+.idea

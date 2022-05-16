@@ -1,0 +1,34 @@
+FROM node:12.17.0-alpine
+
+# Env
+ENV TIME_ZONE=Asia/Hong_Kong
+ENV NODE_ENV=production
+ENV NODE_CONFIG_ENV=production
+ENV SERVER_PORT=80
+
+# Timezone setting
+RUN apk --update add tzdata \
+   && cp /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime \
+   && echo "Asia/Hong_Kong" > /etc/timezone \
+   && apk del tzdata
+
+# Create Directory for the Container
+WORKDIR /usr/src/app
+
+# Install all Packages
+COPY ./backend/package.json .
+COPY ./backend/package-lock.json .
+RUN npm ci
+
+# TypeScript
+ADD ./backend/. /usr/src/app
+RUN npm run build
+
+# remove unused files
+RUN rm -r /usr/src/app/src
+RUN rm -r /usr/src/app/node_modules
+RUN npm ci --production
+
+# Start
+CMD [ "npm", "start" ]
+EXPOSE 80

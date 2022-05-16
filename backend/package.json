@@ -1,0 +1,53 @@
+{
+  "name": "ecs-fargate-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "private": true,
+  "files": [
+    "build/**/*"
+  ],
+  "dependencies": {
+    "@types/config": "0.0.39",
+    "@types/koa": "^2.13.4",
+    "@types/mysql": "^2.15.19",
+    "axios": "^0.21.1",
+    "config": "^3.3.6",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "elapsed-time": "0.0.1",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.4.0",
+    "type-koa": "^0.1.7",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/jest": "^27.4.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.26",
+    "@types/supertest": "^2.0.11",
+    "chai": "^4.3.6",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-mocha": "^8.0.0",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.12",
+    "npm": "^7.21.0",
+    "nyc": "^15.1.0",
+    "supertest": "^6.1.6",
+    "ts-node": "^10.7.0"
+  },
+  "scripts": {
+    "dev": "NODE_CONFIG_ENV=dev nodemon src/index.js",
+    "start": "node build/index.js",
+    "dev-ts": "PORT=81 ts-node src/index.ts",
+    "build": "tsc --build --clean && tsc",
+    "--- tests ---": "",
+    "test:coverage:all": "nyc npm run test:deploy:all",
+    "test:deploy:all": "mocha tests/**/*.test.ts"
+  },
+  "author": "",
+  "license": "MIT"
+}
