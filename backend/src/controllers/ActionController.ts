@@ -5,6 +5,6 @@ import {Controller, Get} from "type-koa";
 export class ActionController {
   @Get('/')
   async getRoute(ctx: Context) {
-    ctx.body = 'Hello World!! 555';
+    ctx.body = 'Hello World!! 666';
   }
 }
